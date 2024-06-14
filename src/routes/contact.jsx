@@ -19,7 +19,7 @@ export async function action({ request, params }) {
   });
 }
 
-export default function Contact() {
+export default function Component() {
   const { contact } = useLoaderData();
 
   return (

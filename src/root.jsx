@@ -30,7 +30,7 @@ export async function action() {
   return redirect(`/contacts/${contact.id}/edit`);
 }
 
-export default function Root() {
+export default function Component() {
   const { contacts } = useLoaderData();
 
   return (
