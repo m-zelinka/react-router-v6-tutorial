@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import ErrorPage from "./error-page";
+import ErrorPage from "./components/error-page";
 import "./index.css";
 import Root, { action as rootAction, loader as rootLoader } from "./root";
 import Index from "./routes";
