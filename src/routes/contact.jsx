@@ -13,10 +13,13 @@ export async function loader({ params }) {
 
 export async function action({ request, params }) {
   const formData = await request.formData();
+  const favorite = formData.get("favorite");
 
-  return updateContact(params.contactId, {
-    favorite: formData.get("favorite") === "true",
+  await updateContact(params.contactId, {
+    favorite: favorite === "true",
   });
+
+  return { ok: true };
 }
 
 export default function Component() {
@@ -24,15 +27,13 @@ export default function Component() {
 
   return (
     <div id="contact">
-      <div>
-        <img
-          key={contact.avatar}
-          src={
-            contact.avatar ||
-            `https://robohash.org/${contact.id}.png?size=200x200`
-          }
-        />
-      </div>
+      <img
+        key={contact.avatar}
+        src={
+          contact.avatar ||
+          `https://robohash.org/${contact.id}.png?size=200x200`
+        }
+      />
       <div>
         <h1>
           {contact.first || contact.last ? (
@@ -60,7 +61,11 @@ export default function Component() {
             method="post"
             action="destroy"
             onSubmit={(event) => {
-              if (!confirm("Please confirm you want to delete this record.")) {
+              const shouldDelete = confirm(
+                "Please confirm you want to delete this record.",
+              );
+
+              if (!shouldDelete) {
                 event.preventDefault();
               }
             }}
