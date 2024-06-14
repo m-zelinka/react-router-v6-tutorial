@@ -15,7 +15,10 @@ import Contact, {
   loader as contactLoader,
 } from "./routes/contact";
 import { action as destroyAction } from "./routes/destroy";
-import EditContact, { action as editAction } from "./routes/edit";
+import EditContact, {
+  action as editContactAction,
+  loader as editContactLoader,
+} from "./routes/edit";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,8 +40,8 @@ const router = createBrowserRouter(
         <Route
           path="contacts/:contactId/edit"
           element={<EditContact />}
-          loader={contactLoader}
-          action={editAction}
+          loader={editContactLoader}
+          action={editContactAction}
         />
         <Route path="contacts/:contactId/destroy" action={destroyAction} />
       </Route>
