@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Form, useFetcher, useLoaderData } from "react-router-dom";
-import { getContact, updateContact } from "../contacts";
+import { getContact, updateContact } from "../utils/contacts";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);

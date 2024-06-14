@@ -7,7 +7,6 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import ErrorPage from "./components/error-page";
-import "./index.css";
 import Root, { action as rootAction, loader as rootLoader } from "./root";
 import Index from "./routes";
 import Contact, {
@@ -19,6 +18,7 @@ import EditContact, {
   action as editContactAction,
   loader as editContactLoader,
 } from "./routes/edit";
+import "./styles/index.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 import { useSpinDelay } from "spin-delay";
 import LoadingOverlay from "./components/loading-overlay";
-import { createContact, getContacts } from "./contacts";
+import { createContact, getContacts } from "./utils/contacts";
 
 export async function loader({ request }) {
   const url = new URL(request.url);
