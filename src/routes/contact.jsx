@@ -74,7 +74,7 @@ export default function Contact() {
 }
 
 function Favorite({ contact }) {
-  const fetcher = useFetcher();
+  const fetcher = useFetcher({ key: `contact:${contact.id}` });
   const favorite = fetcher.formData
     ? fetcher.formData.get("favorite") === "true"
     : contact.favorite;
@@ -92,5 +92,8 @@ function Favorite({ contact }) {
   );
 }
 Favorite.propTypes = {
-  contact: PropTypes.shape({ favorite: PropTypes.bool }).isRequired,
+  contact: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    favorite: PropTypes.bool,
+  }).isRequired,
 };
