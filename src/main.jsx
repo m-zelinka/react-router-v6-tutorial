@@ -30,7 +30,11 @@ const router = createBrowserRouter([
         loader: contactLoader,
         action: editAction,
       },
-      { path: "contacts/:contactId/destroy", action: destroyAction },
+      {
+        path: "contacts/:contactId/destroy",
+        errorElement: <div>Oops! There was an error.</div>,
+        action: destroyAction,
+      },
     ],
   },
 ]);
