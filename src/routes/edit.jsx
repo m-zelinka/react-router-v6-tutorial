@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Form, redirect, useLoaderData, useNavigate } from "react-router-dom";
 import { updateContact } from "../contacts";
 
@@ -12,7 +13,6 @@ export async function action({ request, params }) {
 
 export default function Component() {
   const { contact } = useLoaderData();
-  const navigate = useNavigate();
 
   return (
     <Form method="post" id="contact-form">
@@ -58,10 +58,21 @@ export default function Component() {
       </label>
       <p>
         <button type="submit">Save</button>
-        <button type="button" onClick={() => navigate(-1)}>
-          Cancel
-        </button>
+        <CancelButton>Cancel</CancelButton>
       </p>
     </Form>
   );
 }
+
+function CancelButton() {
+  const navigate = useNavigate();
+
+  return (
+    <button type="button" onClick={() => navigate(-1)}>
+      Cancel
+    </button>
+  );
+}
+CancelButton.propTypes = {
+  children: PropTypes.node,
+};
