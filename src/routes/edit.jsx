@@ -4,6 +4,7 @@ import { getContact, updateContact } from "../utils/contacts";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
+
   if (!contact) {
     throw new Response("", { status: 404, statusText: "Not Found" });
   }
@@ -73,12 +74,12 @@ export default function Component() {
   );
 }
 
-function CancelButton() {
+function CancelButton({ children }) {
   const navigate = useNavigate();
 
   return (
     <button type="button" onClick={() => navigate(-1)}>
-      Cancel
+      {children}
     </button>
   );
 }

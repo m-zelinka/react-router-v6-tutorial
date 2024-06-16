@@ -4,6 +4,7 @@ import { getContact, updateContact } from "../utils/contacts";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
+
   if (!contact) {
     throw new Response("", { status: 404, statusText: "Not Found" });
   }
@@ -33,6 +34,7 @@ export default function Component() {
           contact.avatar ||
           `https://robohash.org/${contact.id}.png?size=200x200`
         }
+        alt=""
       />
       <div>
         <h1>
@@ -45,14 +47,14 @@ export default function Component() {
           )}{" "}
           <Favorite contact={contact} />
         </h1>
-        {contact.twitter && (
+        {contact.twitter ? (
           <p>
             <a target="_blank" href={`https://twitter.com/${contact.twitter}`}>
               {contact.twitter}
             </a>
           </p>
-        )}
-        {contact.notes && <p>{contact.notes}</p>}
+        ) : null}
+        {contact.notes ? <p>{contact.notes}</p> : null}
         <div>
           <Form action="edit">
             <button type="submit">Edit</button>

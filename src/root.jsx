@@ -38,7 +38,7 @@ export default function Component() {
       <div id="sidebar">
         <h1>React Router Contacts</h1>
         <div>
-          <Search />
+          <SearchBar />
           <Form method="post">
             <button type="submit">New</button>
           </Form>
@@ -84,7 +84,7 @@ export default function Component() {
   );
 }
 
-function Search() {
+function SearchBar() {
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q");
 
@@ -97,7 +97,10 @@ function Search() {
 
   // Sync input value with the URL Search Params
   useEffect(() => {
-    document.getElementById("q").value = q ?? "";
+    const searchField = document.getElementById("q");
+    if (searchField instanceof HTMLInputElement) {
+      searchField.value = q || "";
+    }
   }, [q]);
 
   return (
